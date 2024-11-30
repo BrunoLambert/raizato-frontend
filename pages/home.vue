@@ -1,28 +1,23 @@
 <template>
-  <div class="flex items-center flex-col">
-    <h2 class="mb-5 text-lg self-start underline">Pagina Inicial</h2>
+  <div class="flex items-center flex-col mb-10">
     <div class="w-full max-w-2xl">
       <UTabs :default-index="0" :items="homeItems" class="w-full">
         <template #item="{ item }">
-          <UTable :columns="item.table.colsTitle" :rows="item.table.data" :loading="loading"
-            :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Carregando...' }"
-            :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'Vazio' }"
-            class="border-2 border-gray-800/50 bg-sky-700 rounded-xl" :ui="{
-              tr: { base: 'hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer' }, td: { base: 'dark:text-white' }
-            }" />
+          <CommonTable :data="item.table.data" :colsTitle="item.table.colsTitle" :loading="loading" />
         </template>
       </UTabs>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
+import type { HomeTabsType } from '~/assets/types/components';
 import type { ProductModel } from '~/assets/types/product';
 import type { StockModel } from '~/assets/types/stock';
 
 const api = useApi()
 // State
-const homeItems = ref<any[]>([])
-const loading = ref<boolean>(true);
+const homeItems = ref<HomeTabsType[]>([])
+const loading = ref<boolean>(true)
 
 // Lifecycle Functions
 onMounted(async () => {

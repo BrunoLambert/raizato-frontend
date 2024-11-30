@@ -10,12 +10,13 @@ interface ApiOptions {
 export default function () {
   return (prefix: string, method: fecthMethod, data?: object) => {
     const authToken = useAuthToken()
-    // const CSRFToken = useCSRFCookie()
+    const CSRFToken = useCSRFCookie()
 
     const options: ApiOptions = {
       method,
       headers: {
-        'Authorization': authToken.value
+        'Authorization': authToken.value,
+        'X-XSRF-TOKEN': CSRFToken.value
       },
     }
 

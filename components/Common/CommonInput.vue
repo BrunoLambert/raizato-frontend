@@ -1,13 +1,17 @@
-<script setup lang="ts">
-const { label, placeholder, disabled, type } = defineProps<{ label?: string, placeholder?: string, disabled?: boolean, type?: string }>()
-const inputValue = defineModel<string>("value")
-</script>
-
 <template>
   <div>
     <label class="text-base pl-1">{{ label || "Label" }}:</label>
-    <UInput v-model="inputValue" :disabled="disabled" full-width :placeholder="placeholder" :type="type" />
+    <UInput v-model="inputValue" :disabled="disabled || readonly" full-width :placeholder="placeholder" :type="type"
+      :readonly="readonly" />
   </div>
 </template>
 
-<style></style>
+<script setup lang="ts">
+import type { CommonInputProps } from '~/assets/types/components';
+
+// Props
+const { label, placeholder, disabled, type, readonly } = defineProps<CommonInputProps>()
+
+// Model
+const inputValue = defineModel<string>("value")
+</script>

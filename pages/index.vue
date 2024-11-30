@@ -26,9 +26,14 @@ import { ref } from "vue";
 import { useApiStore } from "~/store/api";
 import { useUserStore } from "~/store/user";
 
+// Next
 definePageMeta({
   layout: false,
 });
+const router = useRouter()
+
+// UI
+const toast = useToast()
 
 // Store
 const ApiStore = useApiStore()
@@ -39,25 +44,31 @@ const email = ref<string>('brunofsclambert@gmail.com')
 const password = ref<string>('1324')
 const loading = ref<boolean>(false)
 
-// Other Hooks
-const router = useRouter()
-
 // Actions
 async function onPressLogin(): Promise<void> {
   try {
     if (!email.value || !password.value) return;
-
     loading.value = true
+
     const success = await ApiStore.login(email.value, password.value)
     if (success) {
       const userSuccess = await UserStore.getUserDetails()
       if (userSuccess) {
         router.push("home")
+        toast.add({
+          title: "Login feito com sucesso!",
+          description: "Bem vindo a plataforma Raizato."
+        })
       }
     }
-    loading.value = false
+
   } catch (error: any) {
-    console.log(error)
+    toast.add({
+      title: "Usuário ou senha incorretos",
+      description: "Confira os dados e tente novamente",
+      color: "red"
+    })
   }
+  loading.value = false
 }
 </script>
