@@ -16,7 +16,8 @@
         :disabled="loading" />
       <div>
         <label class="text-base pl-1">Função</label>
-        <USelect v-model="form.role" :options="roleOptions" option-attribute="name" :disabled="loading || lockRole || isSelf" />
+        <USelect v-model="form.role" :options="roleOptions" option-attribute="name"
+          :disabled="loading || lockRole || isSelf" />
       </div>
       <CommonInput v-model:value="form.formatted_created_at" label="Data de Registro" readonly />
       <CommonInput v-model:value="form.formatted_updated_at" label="Última atualização" readonly />
@@ -78,8 +79,13 @@ const onSaveUser = async () => {
   loading.value = true
   try {
     if (!!user) {
-      const savedUser = await userStore.saveUser(form.value)
-      toast.add({ title: "Usuário salvo com sucesso!" })
+      let savedUser: UserModel
+      if (isSelf) {
+        savedUser = await userStore.updateMyUser(form.value)
+      } else {
+        savedUser = await userStore.saveUser(form.value)
+      }
+      toast.add({ title: "Usuário atualizado com sucesso!" })
       emit("update", savedUser)
     } else {
       const newUser = await userStore.createUser(form.value)

@@ -19,20 +19,6 @@ export const useStocklogStore = defineStore("stocklogStore", {
         return Promise.reject(error);
       }
     },
-    // async search(search: string): Promise<StocklogModel[]> {
-    //   try {
-    //     if (search.length < 2) return Promise.resolve([]);
-
-    //     const api = useApi()
-    //     const { data, success } = await api(`${this.apiPrefix}/search`, "GET", { search }) as ApiResponseType;
-    //     if (success) {
-    //       return Promise.resolve(data);
-    //     }
-    //     return Promise.reject("Failed to fetch");
-    //   } catch (error: any) {
-    //     return Promise.reject(error);
-    //   }
-    // },
     async create(form: StocklogModel): Promise<StocklogModel> {
       try {
         const api = useApi()

@@ -17,6 +17,18 @@ export const useUserStore = defineStore("userStore", {
         return Promise.reject(error)
       }
     },
+    async updateMyUser(user: UserModel): Promise<UserModel> {
+      try {
+        const api = useApi()
+        const response = await api('/user', "PUT", user) as UpdateUserType
+        if (response.success) {
+          return Promise.resolve(response.data)
+        }
+        return Promise.reject("Failed")
+      } catch (error) {
+        return Promise.reject(error)
+      }
+    },
     async getUsers(page: number = 1): Promise<UserModelPagination> {
       try {
         const api = useApi()
