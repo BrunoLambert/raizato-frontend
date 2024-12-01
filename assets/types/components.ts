@@ -39,7 +39,8 @@ export interface LayoutNavigationLinks {
 
 export interface UserFormProps {
   user?: UserModel,
-  lockRole?: boolean
+  lockRole?: boolean,
+  isSelf?: boolean
 }
 
 export interface CategoryFormProps {

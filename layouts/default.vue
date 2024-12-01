@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <div class="flex justify-between items-center px-10 py-5 border-b-2 border-secondary bg-sky-700">
-      <h1 class="text-xl">Bem-vindo, <b class="text-primary">{{ userStore.details.fullname }}</b>!</h1>
+  <div class="bg-gradient-to-b from-10% from-black via-30% via-black to-70% to-gray">
+    <div class="flex justify-between items-center px-10 py-5 border-b-2 rounded-b-2xl border-white bg-gradient-to-tl from-primary to-secondary">
+      <h1 class="text-xl text-black font-bold">Bem-vindo, <span class="text-primary text-shadow">{{ userStore.details.fullname }}</span></h1>
       <!-- <ColorScheme>
         <USelect v-model="$colorMode.preference" :options="['system', 'light', 'dark']" />
       </ColorScheme> -->
-      <UButton label="Logout" icon="i-mdi:account-remove" size="sm" @click="handleLogout" />
+      <LayoutMenu />
     </div>
     <div>
       <LayoutNavigation />
@@ -19,7 +19,6 @@
 </template>
 
 <script setup lang="ts">
-import { useApiStore } from '~/store/api';
 import { useUserStore } from '~/store/user';
 
 // Next
@@ -31,22 +30,9 @@ const toast = useToast()
 
 // Store
 const userStore = useUserStore()
-const apiStore = useApiStore()
 
 // Hooks
 const noAuthRoutes = useNoAuthRoutes()
-
-// Methods
-const handleLogout = async () => {
-  const success = await apiStore.logout()
-  if (success) {
-    toast.add({
-      title: "Logout feito com sucesso!",
-      description: "Esperamos que volte logo."
-    })
-    router.push("/")
-  }
-}
 
 // Lifecycle
 onMounted(async () => {

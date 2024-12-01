@@ -1,5 +1,3 @@
-// It will be available as randomEntry() (camelCase of file name without extension)
-
 export default function (phone: string) {
   switch (phone.length) {
     case 8:

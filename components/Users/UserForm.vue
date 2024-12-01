@@ -2,7 +2,10 @@
   <UCard>
     <template #header>
       <h2 class="text-2xl font-bold">
-        {{ user ? `Usurário ##${user?.id}` : "Usuário Novo" }}
+        <span v-if="isSelf">Editar Perfil</span>
+        <span v-else>
+          {{ user ? `Usurário ##${user?.id}` : "Usuário Novo" }}
+        </span>
       </h2>
     </template>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -13,14 +16,14 @@
         :disabled="loading" />
       <div>
         <label class="text-base pl-1">Função</label>
-        <USelect v-model="form.role" :options="roleOptions" option-attribute="name" :disabled="loading || !!lockRole" />
+        <USelect v-model="form.role" :options="roleOptions" option-attribute="name" :disabled="loading || lockRole || isSelf" />
       </div>
       <CommonInput v-model:value="form.formatted_created_at" label="Data de Registro" readonly />
       <CommonInput v-model:value="form.formatted_updated_at" label="Última atualização" readonly />
       <CommonInput v-model:value="form.password" label="Senha" placeholder="Insira a senha" type="password"
         :disabled="loading" />
-      <UButton v-if="!!user && !lockRole" label="Excluir Permanentemente" size="sm" class="block h-9 self-end"
-        variant="soft" color="red" @click="onDeleteUser" />
+      <UButton v-if="!!user && !lockRole && !isSelf" label="Excluir Permanentemente" size="sm"
+        class="block h-9 self-end" variant="soft" color="red" @click="onDeleteUser" />
     </div>
 
     <template #footer>
@@ -46,7 +49,7 @@ const toast = useToast()
 const userStore = useUserStore()
 
 // Props
-const { user, lockRole } = defineProps<UserFormProps>()
+const { user, lockRole, isSelf } = defineProps<UserFormProps>()
 
 // Emits
 const emit = defineEmits(["update"])
