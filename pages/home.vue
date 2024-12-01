@@ -11,7 +11,7 @@
 </template>
 <script lang="ts" setup>
 import type { HomeTabsType } from '~/assets/types/components';
-import type { ProductModel } from '~/assets/types/product';
+import type { ProductModel } from '~/assets/types/products';
 import type { StockModel } from '~/assets/types/stock';
 
 const api = useApi()

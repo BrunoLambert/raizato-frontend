@@ -7,7 +7,7 @@
       </ColorScheme> -->
       <UButton label="Logout" icon="i-mdi:account-remove" size="sm" @click="handleLogout" />
     </div>
-    <div class="px-10">
+    <div>
       <LayoutNavigation />
     </div>
     <div class="mt-5 px-5 flex justify-center">

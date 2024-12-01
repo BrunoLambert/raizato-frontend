@@ -1,3 +1,8 @@
+import type { CategoryModel } from "./category"
+import type { ProductModel } from "./products"
+import type { StockModel } from "./stock"
+import type { StocklogModel } from "./stocklog"
+import type { SupplierModel } from "./suppliers"
 import type { UserModel } from "./user"
 
 export interface CommonTableColsTitle {
@@ -35,4 +40,24 @@ export interface LayoutNavigationLinks {
 export interface UserFormProps {
   user?: UserModel,
   lockRole?: boolean
+}
+
+export interface CategoryFormProps {
+  category?: CategoryModel,
+}
+
+export interface SupplierFormProps {
+  supplier?: SupplierModel,
+}
+
+export interface ProductFormProps {
+  product?: ProductModel,
+}
+
+export interface StockFormProps {
+  stock?: StockModel,
+}
+
+export interface StocklogFormProps {
+  stocklog?: StocklogModel,
 }

@@ -13,5 +13,5 @@ import type { CommonInputProps } from '~/assets/types/components';
 const { label, placeholder, disabled, type, readonly } = defineProps<CommonInputProps>()
 
 // Model
-const inputValue = defineModel<string>("value")
+const inputValue = defineModel<string | number>("value")
 </script>
