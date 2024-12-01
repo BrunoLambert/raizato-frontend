@@ -6,8 +6,8 @@ Foi decidido usar o Nuxt por causa do tempo para construir o projeto por inteiro
 ## Packages Adicionais
 Junto com Vue e Nuxt, foram usadaos alguns recursos adicionais para ajudar na construção do projeto, tanto em velocidade tanto em praticidade:
 
-* **Nuxt UI**: Componentes prontos para criar a interface
-* **Pinia**: Package que cria uma store estilo Vuex para Nuxt 3.
+* [**Nuxt UI**](https://ui.nuxt.com/): Componentes prontos para criar a interface
+* [**Pinia**](https://pinia.vuejs.org/): Package que cria uma store estilo Vuex para Nuxt 3.
 
 ## UI
 
@@ -16,8 +16,11 @@ As cores usadas para a construção do sistema foram baseados no logo da empresa
 * Primária: **#18d556**
 * Secundária: **#2a8cfd**
 
+> OBS.: Também foram usadas algumas outras cores similares e aproximadas para criar os contrates necessários.
+
 ### Design
 Design foi pensado de forma simples porém moderna, usando uma abordagem minimalista de mostrar apenas o necessário dentre as opções.
+> OBS.: Inspiração em alguns outros sistemas de dashboard existentes.
 
 ## Estrutura
 A estrutura do projeto segue o padrão apresentado na documentação do Nuxt sendo:
@@ -31,7 +34,15 @@ A estrutura do projeto segue o padrão apresentado na documentação do Nuxt sen
 * store: Usando o Pinia para criar Stores que permitem manipular dados e chamar funções de forma "global" e de forma organizada.
 * util: Funções utilizadas pela aplicação sem a necessidade de imports (Nuxt já importa por contexto).
 
-# Starting the Project
+# Considerações
+Infelizmente o tempo limite estava chegando e não houve espaço para produção de tetes unitários.
+
+Porém, se for do interesse você pode ver alguns outros projetos que contém testes:
+* [Frontend - React.js](https://github.com/BrunoLambert/elo7-challange/tree/main/app/components/Jobs/__tests__)
+
+As requisições estão sendo feitas de forma mistas entre SSR (quando são os primeiros requests) e Client-side quando é feito por interação. Porém é de meu conhecimento que é possível realizar um "*middleware*" (BFF - Backend for frontend) para esconder as API Requests bem como formatação e pré-autênticação, que não foi realizado por falta de tempo para conclusão do teste.
+
+# Starting Project
 You can check, bellow, what commands you need to run to start the project.
 
 ## Nuxt UI Minimal Starter
